@@ -24,6 +24,7 @@ export class EmployeeService {
     const { email, code, companyCode } = createEmployeeDto;
     const existEmployee = await this.employeeRepository.findOne({
       where: [{ code }, { email }],
+      withDeleted: true,
     });
 
     if (existEmployee) {

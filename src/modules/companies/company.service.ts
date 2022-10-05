@@ -14,6 +14,7 @@ export class CompanyService {
   async create(createCompanyDto: CreateCompanyDto) {
     const existCompany = await this.companyRepository.findOne({
       where: { code: createCompanyDto.code },
+      withDeleted: true,
     });
 
     if (existCompany) {
